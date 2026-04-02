@@ -42,15 +42,20 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; colo
 /* ── NAV ── */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  padding: 0 2rem; height: 72px;
+  padding: 0 2rem; height: 120px;
   display: flex; align-items: center; justify-content: space-between;
   background: rgba(6,13,24,0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-dark);
-  transition: var(--transition);
+  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease;
 }
-.nav.scrolled { background: rgba(6,13,24,0.95); }
+.nav.scrolled { background: rgba(6,13,24,0.95); height: 64px; }
 .nav-logo { display: flex; align-items: center; gap: 0; text-decoration: none; }
-.nav-logo img { height: 38px; width: auto; }
+.nav-logo img { height: 80px; width: auto; transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+.nav.scrolled .nav-logo img { height: 38px; }
+.nav-fb-icon, .nav-fb-text { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+.nav.scrolled .nav-fb-icon { width: 28px !important; height: 28px !important; font-size: 13px !important; border-radius: 7px !important; }
+.nav.scrolled .nav-fb-text { font-size: 1rem !important; }
+.nav.scrolled .nav-logo-fallback { gap: 8px !important; }
 .nav-links { display: flex; align-items: center; gap: 2rem; }
 .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: var(--transition); }
 .nav-links a:hover { color: #fff; }
@@ -317,7 +322,7 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; colo
 /* ── MOBILE ── */
 @media (max-width: 900px) {
   .nav-links {
-    display: none; position: fixed; top: 72px; left: 0; right: 0;
+    display: none; position: fixed; top: 120px; left: 0; right: 0;
     background: rgba(6,13,24,0.98); backdrop-filter: blur(20px);
     flex-direction: column; padding: 2rem; gap: 1.5rem;
     border-bottom: 1px solid var(--border-dark);
@@ -349,7 +354,7 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; colo
 <nav class="nav" id="nav">
   <a href="#hero" class="nav-logo">
     <!-- Replace src with your logo file path e.g. ./logo.png -->
-    <img src="logo.png" alt="Zerowait AI" onerror="this.onerror=null;this.outerHTML='<div style=\'display:flex;align-items:center;gap:10px\'><div style=\'width:32px;height:32px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:var(--bg-dark)\'>Z</div><div style=\'font-size:1.1rem;font-weight:700;color:var(--text-white);letter-spacing:-0.02em\'>Zerowait<span style=color:var(--accent)> AI</span></div></div>'">
+    <img src="logo.png" alt="Zerowait AI" onerror="this.onerror=null;this.outerHTML='<div class=\'nav-logo-fallback\' style=\'display:flex;align-items:center;gap:14px\'><div style=\'width:48px;height:48px;background:var(--accent);border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px;color:var(--bg-dark);transition:all 0.4s cubic-bezier(0.4,0,0.2,1)\' class=\'nav-fb-icon\'>Z</div><div style=\'font-size:1.6rem;font-weight:700;color:var(--text-white);letter-spacing:-0.02em;transition:font-size 0.4s cubic-bezier(0.4,0,0.2,1)\' class=\'nav-fb-text\'>Zerowait<span style=color:var(--accent)> AI</span></div></div>'">
   </a>
   <div class="nav-links" id="navLinks">
     <a href="#services">Services</a>
@@ -390,14 +395,10 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; colo
   <div class="container">
     <div class="logos-label">Trusted by forward-thinking organisations</div>
     <div class="logos-grid">
-      <!-- Westpac -->
-      <svg viewBox="0 0 180 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:32px;width:auto"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="18" fill="#c8d6e5" letter-spacing="0.02em">WESTPAC</text></svg>
-      <!-- SolBox -->
-      <svg viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:32px;width:auto"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="18" fill="#c8d6e5" letter-spacing="0.02em">SOLBOX</text></svg>
-      <!-- Billboard Earth -->
-      <svg viewBox="0 0 220 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:32px;width:auto"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="18" fill="#c8d6e5" letter-spacing="0.02em">BILLBOARD EARTH</text></svg>
-      <!-- Hyperscience -->
-      <svg viewBox="0 0 220 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:32px;width:auto"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="18" fill="#c8d6e5" letter-spacing="0.02em">HYPERSCIENCE</text></svg>
+      <img src="png-transparent-westpac-australia-and-new-zealand-banking-group-bank-of-south-australia-loan-bank-text-trademark-logo.png" alt="Westpac" style="height:34px;width:auto;filter:grayscale(1) brightness(0.7) invert(1);opacity:0.45">
+      <img src="SolBox_logo_full-colour_rgb_SCREEN.png" alt="SolBox" style="height:34px;width:auto;filter:grayscale(1) brightness(0.7) invert(1);opacity:0.45">
+      <img src="bbe-logo.png" alt="Billboard Earth" style="height:34px;width:auto;filter:grayscale(1) brightness(0.7) invert(1);opacity:0.45">
+      <img src="Hyperscience-logo-02.png" alt="Hyperscience" style="height:34px;width:auto;filter:grayscale(1) brightness(0.7) invert(1);opacity:0.45">
     </div>
   </div>
 </section>
@@ -824,7 +825,7 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; colo
     <div class="footer-grid">
       <div class="footer-brand">
         <!-- Replace src with your logo file path -->
-        <img src="logo.png" alt="Zerowait AI" class="footer-brand-logo" onerror="this.onerror=null;this.outerHTML='<div style=\'font-size:1.1rem;font-weight:700;color:var(--text-white);letter-spacing:-0.02em;margin-bottom:0.75rem\'>Zerowait<span style=color:var(--accent)> AI</span></div>'">
+        <img src="logo.png" alt="Zerowait AI" class="footer-brand-logo" onerror="this.onerror=null;this.outerHTML='<div style=\'font-size:1.3rem;font-weight:700;color:var(--text-white);letter-spacing:-0.02em;margin-bottom:0.75rem\'>Zerowait<span style=color:var(--accent)> AI</span></div>'">
         <p>Practical AI consulting and implementation for businesses that cannot afford to wait. Based in Brisbane, Australia.</p>
       </div>
       <div class="footer-col">
